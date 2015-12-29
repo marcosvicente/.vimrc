@@ -1,5 +1,1 @@
-# Vimrc
-# Vimrc
-# Vimrc
-# .vimrc
-# .vimrc
+# Meu vimrc
