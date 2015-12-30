@@ -7,6 +7,71 @@ set number
 set incsearch
 set ignorecase
 set hlsearch
+set smartcase  - use case if any caps used 
+
+
+" colorizer.vim	Colorize all text in the form #rrggbb or #rgb; entrance
+
+if exists("loaded_colorizer") || v:version < 700 || !(has("gui_running") || &t_Co == 256)
+  finish
+endif
+let loaded_colorizer = 1
+
+let s:save_cpo = &cpo
+set cpo&vim
+
+"Define commands {{{1
+if !exists('g:colorizer_maxlines')
+  let g:colorizer_maxlines = -1
+endif
+command! -bar -bang ColorHighlight call colorizer#ColorHighlight(1, "<bang>")
+command! -bar ColorClear call colorizer#ColorClear()
+command! -bar ColorToggle call colorizer#ColorToggle()
+nnoremap <silent> <Plug>Colorizer :ColorToggle<CR>
+if !hasmapto("<Plug>Colorizer") && (!exists("g:colorizer_nomap") || g:colorizer_nomap == 0)
+  nmap <unique> <Leader>tc <Plug>Colorizer
+endif
+if !exists('g:colorizer_startup') || g:colorizer_startup
+  call colorizer#ColorHighlight(0)
+endif
+
+" Cleanup and modelines {{{1
+let &cpo = s:save_cpo
+" vim:ft=vim:fdm=marker:fmr={{{,}}}:
+
+"syntastic
+let g:syntastic_c_checkers=['make','splint']
+
+" =============
+" NerdTree
+" ============
+let Tlist_Use_Right_Window = 1
+let NERDTreeQuitOnOpen = 0
+let NERDTreeIgnore=['.pyc$[[file]]','.gitignore$[[dir]]']
+let g:nerdtree_tabs_open_on_gui_startup = 1
+map <F5> :NERDTreeToggle<cr>
+vmap <F5> <esc>:NERDTreeToggle<cr>
+imap <F5> <esc>:NERDTreeToggle<cr>
+map <leader>nt :NERDTreeToggle<cr>
+vmap <leader>nt <esc>:NERDTreeToggle<cr>
+imap <leader>nt <esc>:NERDTreeToggle<cr>
+
+" Settings for python-mode
+" cd ~/.vim/bundle
+" git clone https://github.com/klen/python-mode
+map <Leader>g :call RopeGotoDefinition()<CR>
+let g:pymode_run = 0
+let g:pymode_folding=0
+let g:pymode_lint_checker="pyflakes,pep8"
+let g:pymode_lint_ignore="N4,E12,E711,E712,E721,E502"
+ 
+let g:pymode_rope_enable_shortcuts=0
+let pymode_rope_vim_completion=0
+let pymode_rope_extended_complete=0
+"let g:pymode_rope_enable_autoimport=0
+let g:pymode_rope_goto_def_newwin="new"
+let g:pymode_rope_guess_project = 1
+let g:pymode_rope = 1
 
 " Desabilitar menus:
 set guioptions-=m
@@ -16,15 +81,23 @@ set guioptions-=T
 " Limpar os resultados destacados:
 nmap <silent> <C-C> :silent noh<CR>
 
+
 " Tabs por espaços:
 set expandtab
 set shiftwidth=4
 set tabstop=4
 
-"Regua e quebra de linhas"
+"Regua e quebra de linhas, linhas"
 set linebreak
 set number
 set ruler
+set showbreak=...
+set wrap linebreak nolist
+
+"Use Vim settings, rather then Vi settings (much better!).
+"This must be first, because it changes other options as a side effect.
+set nocompatible
+
 
 " Clipboard do sistema:
 set clipboard=unnamed
@@ -32,12 +105,33 @@ set clipboard=unnamed
 " Salvar:
 nmap <silent> <C-S> :silent w<CR>
 
+"Auto completar"
+set omnifunc=htmlcomplete#CompleteTags
+set omnifunc=csscomplete#CompleteCSS
+set omnifunc=javascriptcomplete#CompleteJS
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+
+
 
 "Fonte e janela:
 set guifont=Monospace\ 13
 set encoding=utf-8
 set lines=36 columns=142
 set wildmenu
+
+" allows cursor change in tmux mode
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+
+
 
 "Thema"
 set background=dark
@@ -559,3 +653,4 @@ delf s:rgb_number
 delf s:grey_color
 delf s:grey_level
 delf s:grey_number
+set runtimepath^=~/.vim/bundle/ag
