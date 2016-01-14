@@ -11,7 +11,18 @@ def index(request):
 
 @login_required(login_url='/login')
 def post_evento(request):
-    pass
+    if request.method == 'POST':
+        form = PostEventosForm(request.POST)
+        if form.is_valid():
+            novo_evento = form.save()
+            
+        else:
+            form = PostEventosForm()
+    return render(request, 'post_eventos.html',
+            {
+                'form':form
+            }
+        )
 
 @login_required(login_url='/login')
 def post_texto(request):

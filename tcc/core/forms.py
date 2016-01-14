@@ -11,6 +11,7 @@ class PostEventosForm(ModelForm):
         fields = '__all__'
         exclude = ['username']
 
+   
 class PostTextoForm(ModelForm):
     class Meta:
         model = PostTexto
