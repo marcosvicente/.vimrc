@@ -1,0 +1,19 @@
+{% extends "base_blog.html"%}
+{%block title%} {{ blog.titulo}}{% endblock%}
+{% block content %}
+{% include "menu.html"%}
+<main>
+    <h2 class="text-center" id="titulo">{{blog.titulo}}</h2>
+
+
+    <p class="data">{{blog.mudanca}}</p>
+    <hr>
+    <img src="/media/{{blog.imagem}}" alt="">
+    <div class="artigo">
+        {{blog.texto|linebreaks}}
+    </div>
+    
+</main>
+
+
+{% endblock%}

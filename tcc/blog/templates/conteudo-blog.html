@@ -1,0 +1,17 @@
+<div class="row">
+    {% for blog in blog_list %}
+    <div class="small-12 medium-6 large-4 columns">
+        <div class="panel">
+            <a href='{% url 'blog_detail' blog.slug %}' class="text-center">
+                <h3>{{ blog.titulo }}</h3>
+                <img src="/media/{{blog.imagem}}" alt="">
+            </a>  
+        </div>
+    </div>
+
+    {% empty %}
+    <h1>Sem Post Ainda !!!</h1>
+    {%endfor%}
+</div>
+
+

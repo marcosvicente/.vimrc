@@ -1,0 +1,22 @@
+<div class="row">
+    <form action="{%url 'login'%}" method="POST"> 
+        {% csrf_token %} 
+        <div class="small-12 medium-6 large-6 columns">
+            <div class="panel">
+                <h2 class="">Crie uma conta aqui</h2>
+
+                <label for="">Digite seu username: </label>
+                {{form.username}} 
+
+                <label for="">Digite sua senha:</label>
+                {{form.password1}}
+
+                <label for="">Digite sua senha novamente: </label>
+                {{form.password2}}
+
+            <input type="submit" value="Criar conta" class="button radius">            
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+    </div>
+    </form>
+</div>

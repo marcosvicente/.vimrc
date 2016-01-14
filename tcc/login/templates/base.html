@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width">
+            <title></title>
+            <link rel="stylesheet" href="/static/css/foundation.min.css" type="text/css" media="all" />
+            <link rel="stylesheet" href="/static/css/normalize.css" type="text/css" media="all" />
+            <script src="/static/js/vendor/modernizr.js"></script>
+    </head>
+    <body>
+        {% block content %}
+        {% endblock %}
+    <script src ="/static/js/vendor/jquery.js"></script>
+    <script src="/static/js/vendor/fastclick.js"></script>
+    <script src="/static/js/foundation.min.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+
+    <script type="text/javascript" src="http://cidades-estados-js.googlecode.com/files/cidades-estados-v0.2.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            new dgCidadesEstados(
+                document.getElementById('estado'),
+                document.getElementById('cidade'),
+                true
+             );
+         }
+    </script>
+
+    </body>
+</html>
