@@ -1,45 +1,10 @@
-<form id="criar-evento">{% csrf_token %}
-    <div class="row">
+{% block content %}
 
-        <div class="small-12 medium-6  columns">
-            <label>Estado</label>
-            <select id="estado" name="estado"></select>
-        </div>
+<p>test</p>
 
-        <div class="small-12 medium-6 end columns">
-            <label>Cidade</label>
-            <select id="cidade" name="cidade"></select>
-        </div>
-    </div>
-
-    <div class="row center">
-        <div class="small-12  medium-6 large-4  columns">
-            <label for="">Data</label>
-            <input type="date" name="name" value="">
-        </div>
-
-        <div class="small-12 medium-6 large-4 end columns">
-            <label for="">Hora</label>
-            <input type="time" name="name" value="">
-        </div>
-    </div>
-
-    <div class="row collapse">
-        <div class="small-2 medium-1 columns">
-            <span class="prefix">http://</span>
-        </div>
-
-        <div class="small-10 medium-6 end columns">
-            <input type="text" placeholder="Entre o URL...">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="small-2 small-centered columns">
-            <input class="button "type="submit" name="name" value="Criar Evento">
-        </div>
-    </div>
-
+<form method="post">
+    {% csrf_token%}
     {{form}}
+    <input type="submit" class="button radius" value="Criar Evento">
 </form>
-
+{% endblock%}

@@ -11,7 +11,9 @@ class PostEventos(models.Model):
     nome = models.CharField(max_length=50)
     estado = models.CharField(max_length=50)
     cidade = models.CharField(max_length=50)
-    data = models.DateTimeField(auto_now_add=True)
+    data = models.CharField(max_length=50)
+    hora =  models.CharField(max_length=50)
+    criado = models.DateTimeField(auto_now=True)
     url = models.URLField(max_length=200, null=True)
 
     def __str__(self):

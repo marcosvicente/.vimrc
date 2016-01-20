@@ -11,17 +11,27 @@ def index(request):
 
 @login_required(login_url='/login')
 def post_evento(request):
-    form = PostEventosForm()
-    
-    return render(request, 'post_eventos.html',
-            {
-                'form':form
-            }
-        )
+    if request.method == 'POST':
+        form = PostEventosForm(request.POST or None)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.usuario = request.user
+            post.criado = timezone.now()
+            post.save()
+        else: 
+            form = PostEventosForm(instance=post)
+    return render(request, 'post_eventos.html', {'form':form})
 
 @login_required(login_url='/login')
 def post_texto(request):
-    pass
+    if request.method == 'POST':
+        form = PostTextoForm(request.POST)
+        if form.ise_valid():
+            post = form.save(commit=False)
+            post.save()
+    else: 
+        form = PostTextoForm()
+    return render(request, 'post_texto.html', {'form':form})
 
 
 @login_required(login_url='/login')

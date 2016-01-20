@@ -1,24 +1,30 @@
 # _*_ coding: utf-8 _*_
-
 from django import forms
-from django.forms import ModelForm
+
 from .models import PostEventos, PostTexto, PostImage, PostVideo
 
-
-class PostEventosForm(ModelForm): 
+class PostEventosForm(forms.ModelForm):
+    
     class Meta:
         model = PostEventos
-        fields = '__all__'
-        exclude = ['username']
+        fields = (
+                'usuario', 
+                'nome',
+                'estado',
+                'cidade',
+                'data',
+                'hora',  
+                'url',
+                )
 
-class PostTextoForm(ModelForm):
+class PostTextoForm(forms.ModelForm):
+
     class Meta:
         model = PostTexto
-        fields = '__all__'
-        exclude = ['username']
+        fields = ('usuario','titulo', 'texto', )
 
 
-class PostImageForm(ModelForm):
+class PostImageForm(forms.ModelForm):
     class Meta:
         model = PostImage
         fields = '__all__'
@@ -26,7 +32,7 @@ class PostImageForm(ModelForm):
 
 
 
-class PostVideoForm(ModelForm):
+class PostVideoForm(forms.ModelForm):
     class Meta:
         model = PostVideo
         fields = '__all__'
