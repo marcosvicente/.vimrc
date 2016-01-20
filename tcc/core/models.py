@@ -4,7 +4,7 @@ import datetime
 
 from django.db import models
 from django.contrib.auth.models import User
-
+from django import forms
 
 class PostEventos(models.Model):
     usuario = models.OneToOneField(User, unique=True)
@@ -20,6 +20,13 @@ class PostEventos(models.Model):
         return self.nome
 
 
+class PostEventosForm(forms.ModelForm):
+    class Meta:
+        model = PostEventos
+        fields = ['nome', 'estado', 'cidade', 'data', 'hora' ,'url' ]
+
+
+
 class PostTexto(models.Model):
     usuario = models.OneToOneField(User, unique=True)
     titulo = models.CharField(max_length=50, null=True)
@@ -28,6 +35,13 @@ class PostTexto(models.Model):
     
     def __str__(self):
         return self.titulo
+
+class PostTextoForm(forms.ModelForm):
+
+    class Meta:
+        model = PostTexto
+        fields = ('usuario','titulo', 'texto', )
+
 
 
 class PostImage(models.Model):
@@ -38,6 +52,14 @@ class PostImage(models.Model):
     def arquivo_de_image(instance, username):
         return os.path.join('photos', str(instance.id), username)
 
+
+class PostImageForm(forms.ModelForm):
+    class Meta:
+        model = PostImage
+        fields = '__all__'
+        exclude = ['username']
+
+
 class PostVideo(models.Model):
     usuario = models.OneToOneField(User, unique=True)
     video = models.FileField(upload_to="arquivo_de_video", blank=True, null=True)
@@ -47,4 +69,10 @@ class PostVideo(models.Model):
         return os.path.join('videos', str(instance.id), username)
 
 
+
+class PostVideoForm(forms.ModelForm):
+    class Meta:
+        model = PostVideo
+        fields = '__all__'
+        exclude = ['username']
 

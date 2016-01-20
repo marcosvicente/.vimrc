@@ -1,36 +1,36 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-from .models import PostTexto, PostEventos, PostImage, PostVideo
-from .forms import PostTextoForm, PostEventosForm, PostImageForm, PostVideoForm
+from .models import PostTexto,  PostTextoForm,  PostEventos,PostEventosForm, PostImage, PostImageForm, PostVideo,  PostVideoForm
 
 @login_required(login_url='/login')
 def index(request):
-    return render(request, 'index.html')
+    form = PostEventosForm()
+    return render(request, 'index.html', {'form':form})
 
 
 @login_required(login_url='/login')
 def post_evento(request):
     if request.method == 'POST':
-        form = PostEventosForm(request.POST or None)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.usuario = request.user
+        form_evento = PostEventosForm(request.POST or None)
+        if form_evento.is_valid():
+            post = form_evento.save(commit=False)
+            post.usuario = request.user.username
             post.criado = timezone.now()
             post.save()
         else: 
-            form = PostEventosForm(instance=post)
-    return render(request, 'post_eventos.html', {'form':form})
+            form_evento = PostEventosForm(instance=post)
+    return render(request, 'post_eventos.html', {'form_evento':form_evento})
 
 @login_required(login_url='/login')
 def post_texto(request):
     if request.method == 'POST':
-        form = PostTextoForm(request.POST)
-        if form.ise_valid():
-            post = form.save(commit=False)
+        form_texto = PostTextoForm(request.POST or None)
+        if form_texto.is_valid():
+            post = form_texto.save(commit=False)
             post.save()
     else: 
-        form = PostTextoForm()
+        form_texto = PostTextoForm()
     return render(request, 'post_texto.html', {'form':form})
 
 

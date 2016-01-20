@@ -1,0 +1,43 @@
+/****Core*******/
+ 
+
+/***************
+ * Seleção menu*
+ * ************/
+.button {
+    background: #fc7f00;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.button:hover{
+    background: #c67f00;
+}
+#post-evento{
+    background:#ff0000;
+}
+#post-evento:hover{
+    background: #bb0000;
+
+}
+#post-texto{
+    background:#5772d3;
+}
+#post-texto:hover{
+    background: #05005c;
+}
+#post-foto{
+    background:#f0ff11;
+}
+#post-foto:hover{
+    background: #bfd70e;
+
+}
+#post-video{
+    background: #009a11;
+}
+#post-video:hover{
+    background:#006f11;
+
+}
