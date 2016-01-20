@@ -40,13 +40,13 @@ class PostTextoForm(forms.ModelForm):
 
     class Meta:
         model = PostTexto
-        fields = ('usuario','titulo', 'texto', )
+        fields = ['titulo', 'texto']
 
 
 
 class PostImage(models.Model):
     usuario = models.OneToOneField(User, unique=True)
-    image = models.ImageField(upload_to="arquivo_de_image", blank=True, null=True)
+    imagem = models.ImageField(upload_to="arquivo_de_image", blank=True, null=True)
     data = models.DateTimeField(auto_now_add=True)
 
     def arquivo_de_image(instance, username):
@@ -56,9 +56,8 @@ class PostImage(models.Model):
 class PostImageForm(forms.ModelForm):
     class Meta:
         model = PostImage
-        fields = '__all__'
-        exclude = ['username']
-
+        fields = ['imagem']
+       
 
 class PostVideo(models.Model):
     usuario = models.OneToOneField(User, unique=True)
@@ -73,6 +72,4 @@ class PostVideo(models.Model):
 class PostVideoForm(forms.ModelForm):
     class Meta:
         model = PostVideo
-        fields = '__all__'
-        exclude = ['username']
-
+        fields = ['video']

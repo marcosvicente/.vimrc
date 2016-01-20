@@ -1,6 +1,10 @@
 {% block content%}
 <form id="criar-texto">{% csrf_token %}
-{{    form_text  }}
-          <input type="submit" class="button radius">
+    <label for="{{form_texto.titulo.label}}">Titulo:</label>
+    {{form_texto.titulo}}
+
+    <label for="{{form_texto.texto.label}}">Texto:</label>
+    {{form_texto.texto}}
+    <input type="submit" class="button radius" value="Criar Texto">
 </form>
 {% endblock %}

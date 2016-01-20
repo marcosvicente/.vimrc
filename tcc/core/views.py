@@ -5,41 +5,29 @@ from .models import PostTexto,  PostTextoForm,  PostEventos,PostEventosForm, Pos
 
 @login_required(login_url='/login')
 def index(request):
-    form = PostEventosForm()
-    return render(request, 'index.html', {'form':form})
-
-
-@login_required(login_url='/login')
-def post_evento(request):
     if request.method == 'POST':
         form_evento = PostEventosForm(request.POST or None)
+        form_texto = PostTextoForm(request.POST or None )
+        form_imagem = PostImageForm(request.POST or None)
+        form_video = PostVideoForm(request.POST or None)
         if form_evento.is_valid():
-            post = form_evento.save(commit=False)
+            post = form_evento.save(commit=false)
             post.usuario = request.user.username
             post.criado = timezone.now()
             post.save()
         else: 
-            form_evento = PostEventosForm(instance=post)
-    return render(request, 'post_eventos.html', {'form_evento':form_evento})
+            form_evento = PostEventosForm()
 
-@login_required(login_url='/login')
-def post_texto(request):
-    if request.method == 'POST':
-        form_texto = PostTextoForm(request.POST or None)
-        if form_texto.is_valid():
-            post = form_texto.save(commit=False)
-            post.save()
-    else: 
-        form_texto = PostTextoForm()
-    return render(request, 'post_texto.html', {'form':form})
-
-
-@login_required(login_url='/login')
-def post_imagem(request):
-    pass
+       
+    return render(request, 'index.html', 
+            {
+                'form_evento':form_evento,
+                'form_texto':form_texto,
+                'form_imagem':form_imagem,
+                'form_video':form_video
+                
+            }
+        )
 
 
-@login_required(login_url='/login')
-def post_video(request):
-    pass
 

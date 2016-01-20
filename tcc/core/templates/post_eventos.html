@@ -5,30 +5,30 @@
     {% csrf_token%}
     <div class="row">
         <div class="small-12 medium-12 large-12 columns">
-            <label for="{{form.nome.label}}"> Nome do evento:</label>
-            {{form.nome}}
+            <label for="{{form_evento.nome.label}}"> Nome do evento:</label>
+            {{form_evento.nome}}
         </div>
         <div class="small-12 medium-6 large-6 columns">
-            <label for="{{form.estado.label}}">Estado:</label>
-            {{form.estado}}
+            <label for="{{form_evento.estado.label}}">Estado:</label>
+            {{form_evento.estado}}
         </div>
         <div class="small-12 medium-6 large-6 columns">
-            <label for="{{form.cidade.label}}">Cidade:</label>
-            {{form.cidade}}
+            <label for="{{form_evento.cidade.label}}">Cidade:</label>
+            {{form_evento.cidade}}
         </div>
         <div class="small-12 medium-6 large-6 columns">
-            <label for="{{form.data.label}}">Data:</label>
-            {{form.data}}
+            <label for="{{form_evento.data.label}}">Data:</label>
+            {{form_evento.data}}
         </div>
 
         <div class="small-12 medium-6 large-6 columns"> 
-            <label for="{{form.hora.label}}">Hora:</label>
-            {{form.hora}}
+            <label for="{{form_evento.hora.label}}">Hora:</label>
+            {{form_evento.hora}}
         </div>
 
         <div class="small-12 medium-12 large-12 columns">
-            <label for="{{form.url.label}}">Url:</label>
-            {{form.url}}
+            <label for="{{form_evento.url.label}}">Url:</label>
+            {{form_evento.url}}
         </div>
     </div>
 
