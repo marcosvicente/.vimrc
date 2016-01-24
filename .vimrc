@@ -56,22 +56,16 @@ map <leader>nt :NERDTreeToggle<cr>
 vmap <leader>nt <esc>:NERDTreeToggle<cr>
 imap <leader>nt <esc>:NERDTreeToggle<cr>
 
-" Settings for python-mode
-" cd ~/.vim/bundle
-" git clone https://github.com/klen/python-mode
-map <Leader>g :call RopeGotoDefinition()<CR>
-let g:pymode_run = 0
-let g:pymode_folding=0
-let g:pymode_lint_checker="pyflakes,pep8"
-let g:pymode_lint_ignore="N4,E12,E711,E712,E721,E502"
- 
-let g:pymode_rope_enable_shortcuts=0
-let pymode_rope_vim_completion=0
-let pymode_rope_extended_complete=0
-"let g:pymode_rope_enable_autoimport=0
-let g:pymode_rope_goto_def_newwin="new"
-let g:pymode_rope_guess_project = 1
-let g:pymode_rope = 1
+"JavaScriot
+let g:javascript_conceal_function   = "ƒ"
+let g:javascript_conceal_null       = "ø"
+let g:javascript_conceal_this       = "@"
+let g:javascript_conceal_return     = "⇚"
+let g:javascript_conceal_undefined  = "¿"
+let g:javascript_conceal_NaN        = "ℕ"
+let g:javascript_conceal_prototype  = "¶"
+let g:javascript_conceal_static     = "•"
+let g:javascript_conceal_super      = "Ω"
 
 " Desabilitar menus:
 set guioptions-=m
